@@ -1,0 +1,11 @@
+# /Dockerfile
+FROM nginx:alpine
+
+# 웹 소스 파일을 Nginx 기본 서빙 경로로 복사
+COPY src/index.js /usr/share/nginx/html/index.js
+
+# 커스텀 Nginx 설정 적용 (기본 설정 파일 교체)
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
